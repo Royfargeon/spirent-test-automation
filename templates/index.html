@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spirent Test Automation Tool</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/styles.css') }}" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-4">
+        <h1>Spirent Test Automation Tool</h1>
+        
+        <!-- File Upload Section -->
+        <div class="card mb-4">
+            <div class="card-header">
+                <h5 class="card-title mb-0">Test Configuration Upload</h5>
+            </div>
+            <div class="card-body">
+                <form id="uploadForm">
+                    <div class="mb-3">
+                        <label for="tccFile" class="form-label">Select .tcc File</label>
+                        <input type="file" class="form-control" id="tccFile" accept=".tcc" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Upload</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Test Execution Section -->
+        <div class="card mb-4">
+            <div class="card-header">
+                <h5 class="card-title mb-0">Test Execution</h5>
+            </div>
+            <div class="card-body">
+                <div class="mb-3">
+                    <label class="form-label">Available Test Configurations</label>
+                    <select class="form-select" id="testSelect">
+                        <option value="">Select a test configuration</option>
+                        {% for test in test_files %}
+                        <option value="{{ test }}">{{ test }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <button id="runTest" class="btn btn-success">Run Test</button>
+            </div>
+        </div>
+
+        <!-- Results Section -->
+        <div class="card mb-4">
+            <div class="card-header">
+                <h5 class="card-title mb-0">Test Results</h5>
+            </div>
+            <div class="card-body">
+                <div id="testStatus" class="alert alert-info d-none"></div>
+                
+                <!-- Charts -->
+                <div class="row mb-4">
+                    <div class="col-md-6">
+                        <canvas id="resultChart"></canvas>
+                    </div>
+                    <div class="col-md-6">
+                        <canvas id="trendChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- Results Table -->
+                <div class="table-responsive">
+                    <table class="table table-striped" id="resultsTable">
+                        <thead>
+                            <tr>
+                                <th>Timestamp</th>
+                                <th>Test File</th>
+                                <th>Status</th>
+                                <th>Return Code</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>

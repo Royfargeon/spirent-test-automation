@@ -1,0 +1,25 @@
+.card {
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    margin-bottom: 20px;
+}
+
+.card-header {
+    background-color: #f8f9fa;
+}
+
+.table-responsive {
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+canvas {
+    max-height: 300px;
+}
+
+.alert {
+    margin-bottom: 20px;
+}
+
+.btn-info {
+    color: white;
+}
