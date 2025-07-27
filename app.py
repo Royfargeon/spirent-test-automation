@@ -98,4 +98,10 @@ def execute_test(test_path):
         raise Exception(f"Test execution failed: {str(e)}")
 
 if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0', port=5000)
+    try:
+        app.run(debug=True, host='0.0.0.0', port=8080)
+    except OSError as e:
+        print(f"Error: {e}")
+        print("The port 8080 might be in use. Try using a different port:")
+        print("1. Edit app.py and change the port number")
+        print("2. Or run with a different port: export FLASK_RUN_PORT=3000 && python app.py")
